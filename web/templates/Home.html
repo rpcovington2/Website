@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title%} Erie MakerSpace {% endblock %}
+{% block content %}
+
+<div class="container-sm my-2 py-5 d-none d-lg-block">
+  <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <div class="carousel-inner" style="max-height:300px" data-bs-interval="5000">
+      <div class="carousel-item active">
+        <img src="{{url_for('static',filename = 'images/Circuit1.jpg')}}" class="d-block mx-auto h-0" style="max-height:300px">
+      </div>
+      <div class="carousel-item" data-bs-interval="5000">
+        <img src="{{url_for('static',filename = 'images/Circuit1.jpg')}}" class="d-block mx-auto h-25"  style="max-height:300px">
+      </div>
+      <div class="carousel-item" data-bs-interval="5000">
+        <img src="{{url_for('static',filename = 'images/CMd_MEME.jpg')}}" class="d-block mx-auto w-25" style="max-height:300px">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+<div class="container-fluid mx-auto my-5 px-5 bg-transparent">
+  <div class="card col-12 mx-4 border-1 text-center bg-dark bg-gradient">
+    <div class="row px-10 me-auto justify-content-center">
+      <div class="card col-3 m-5 p-5 border-0">
+<!--        <img src="{{url_for('static',filename = 'images/Collaborate.jpg')}}" class="card-img-top w-50 mx-auto" alt="Collborate">-->
+        <div class="card-body">
+          <h3 class="card-title">Location</h3>
+          <p class="card-text">2523 Buffalo Road </br> Erie,PA 16504</p>
+          <div id="map"></div>
+          <a href="#" class="btn btn-primary">Directions</a>
+        </div>
+      </div>
+      <div class="card col-3 m-5 p-5 border-0">
+        <img src="{{url_for('static',filename = 'images/Learn.jpg')}}" class="card-img-top mx-auto w-25" alt="Learn">
+          <div class="card-body">
+            <h5 class="card-title">Learn</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+      </div>
+      <div class="card col-3 m-5 p-5 border-0">
+        <img src="{{url_for('static',filename = 'images/Social.jpg')}}" class="card-img-top mx-auto w-50" alt="Social">
+          <div class="card-body">
+            <h5 class="card-title">Socialize</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Discord</a>
+            <a href="#" class="btn btn-primary">Facebook</a>
+            <a href="#" class="btn btn-primary">YouTube</a>
+          </div>
+      </div>
+    </div>
+        <div class="row px-10 me-auto justify-content-center">
+      <div class="card col-3 m-5 p-5 border-0">
+        <img src="{{url_for('static',filename = 'images/Collaborate.jpg')}}" class="card-img-top w-50 mx-auto" alt="Collborate">
+        <div class="card-body">
+          <h5 class="card-title">Collaborate</h5>
+          <p class="card-text">Our members and their experiences come from a wide array of backgrounds, including engineers, fabricators, producers, artists, educators, and more. Chances are, you'll find someone who shares your interests and can contribute to your project.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+      <div class="card col-3 m-5 p-5 border-0">
+        <img src="{{url_for('static',filename = 'images/Learn.jpg')}}" class="card-img-top mx-auto w-25" alt="Learn">
+          <div class="card-body">
+            <h5 class="card-title">Learn</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+      </div>
+      <div class="card col-3 m-5 p-5 border-0">
+        <img src="{{url_for('static',filename = 'images/Social.jpg')}}" class="card-img-top mx-auto w-50" alt="Social">
+          <div class="card-body">
+            <h5 class="card-title">Socialize</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Discord</a>
+            <a href="#" class="btn btn-primary">Facebook</a>
+            <a href="#" class="btn btn-primary">YouTube</a>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock%}
