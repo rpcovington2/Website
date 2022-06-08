@@ -5,10 +5,11 @@ from flask_login import LoginManager
 
 db = SQLAlchemy()
 DB_NAME = "makerspace"
+app = Flask(__name__)
 
 
 def CreateApp():
-    app = Flask(__name__)
+    # app = Flask(__name__)
     app.config['SECRET_KEY'] = "ThisIStemporayUntilsetupinConfigFile"
     app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://test:admin@127.0.0.1:3306/{DB_NAME}"
 

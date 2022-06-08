@@ -1,4 +1,4 @@
-from web import CreateApp
+from web import CreateApp, app  
 
 if __name__ == '__main__':
 
