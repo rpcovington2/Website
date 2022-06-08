@@ -25,7 +25,7 @@ from .auth import auth
 app.register_blueprint(views)
 app.register_blueprint(auth)
 
-app.run()
+# app.run()
 
 
 def createDatabase(app):
