@@ -2,5 +2,5 @@ from web import CreateApp, app
 
 if __name__ == '__main__':
 
-    apps = CreateApp()
-    apps.run()
+    app1 = CreateApp()
+    app.run()
