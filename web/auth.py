@@ -9,7 +9,7 @@ auth = Blueprint('auth', __name__)
 def login():
     # total = User.query.all()
     # print(total)
-    # loginform = LoginForm()
+    loginform = LoginForm()
     # if loginform.validate_on_submit():
     #     users = User.query.filter(User.Email == loginform.Email.data).count()
     #     print(users)
@@ -22,7 +22,7 @@ def login():
     #     else:
     #         flash("Sign up Here", 'error')
 
-    return render_template("Login.html")  #  loginform=loginform
+    return render_template("Login.html", loginform=loginform)
 
 
 @auth.route("/logout")
