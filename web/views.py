@@ -21,3 +21,7 @@ def events():
 @views.route("/projects")
 def projects():
     return render_template("Projects.html")
+
+@views.route("/shop")
+def Shop():
+    return render_template("Shop.html")
