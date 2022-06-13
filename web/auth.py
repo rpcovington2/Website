@@ -7,22 +7,22 @@ auth = Blueprint('auth', __name__)
 
 @auth.route("/login", methods=["GET", "POST"])
 def login():
-    total = User.query.all()
-    print(total)
-    loginform = LoginForm()
-    if loginform.validate_on_submit():
-        users = User.query.filter(User.Email == loginform.Email.data).count()
-        print(users)
-        if users == 1:
-            checkPassword = User.query.filter(User.Email == loginform.Email.data).all()
-            for x in checkPassword:
-                if x.PasswordHash == loginform.Password.data:
-                    flash("Login Successful!!", 'Success')
-                    return redirect(url_for('views.home'))
-        else:
-            flash("Sign up Here", 'error')
+    # total = User.query.all()
+    # print(total)
+    # loginform = LoginForm()
+    # if loginform.validate_on_submit():
+    #     users = User.query.filter(User.Email == loginform.Email.data).count()
+    #     print(users)
+    #     if users == 1:
+    #         checkPassword = User.query.filter(User.Email == loginform.Email.data).all()
+    #         for x in checkPassword:
+    #             if x.PasswordHash == loginform.Password.data:
+    #                 flash("Login Successful!!", 'Success')
+    #                 return redirect(url_for('views.home'))
+    #     else:
+    #         flash("Sign up Here", 'error')
 
-    return render_template("Login.html", loginform=loginform)
+    return render_template("Login.html")  #  loginform=loginform
 
 
 @auth.route("/logout")
