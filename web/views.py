@@ -38,6 +38,7 @@ def id(item):
     print(item)
     return render_template("item.html")
 
+
 @views.route("/pricing")
 def princing():
 
