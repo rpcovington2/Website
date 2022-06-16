@@ -26,6 +26,15 @@ app.register_blueprint(views)
 app.register_blueprint(auth)
 
 # app.run()
+from .models import User
+
+loginManager = LoginManager()
+loginManager.login_view = 'views.home'
+loginManager.init_app(app)
+
+@loginManager.user_loader
+def loadUser(id):
+    return User.query.get(int(id))
 
 
 def createDatabase(app):

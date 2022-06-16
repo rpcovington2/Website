@@ -1,33 +1,35 @@
 from flask import Blueprint, render_template, flash, redirect, url_for
 from web.models import SignUpForm, User, LoginForm
 from web.app import db
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import login_user, login_required, logout_user, current_user
 
 auth = Blueprint('auth', __name__)
 
 
 @auth.route("/login", methods=["GET", "POST"])
 def login():
-    # total = User.query.all()
-    # print(total)
-    loginform = LoginForm()
-    # if loginform.validate_on_submit():
-    #     users = User.query.filter(User.Email == loginform.Email.data).count()
-    #     print(users)
-    #     if users == 1:
-    #         checkPassword = User.query.filter(User.Email == loginform.Email.data).all()
-    #         for x in checkPassword:
-    #             if x.PasswordHash == loginform.Password.data:
-    #                 flash("Login Successful!!", 'Success')
-    #                 return redirect(url_for('views.home'))
-    #     else:
-    #         flash("Sign up Here", 'error')
+    loginForm = LoginForm()
 
-    return render_template("Login.html", loginform=loginform)
+    if loginForm.validate_on_submit():
+        email = loginForm.Email.data
+        users = User.query.filter_by(Email=email).first()
+        if users:
+            if check_password_hash(users.PasswordHash, loginForm.Password.data):
+                login_user(users)
+                flash("Login Successful!!", 'Success')
+                return redirect(url_for('views.home'))
+        else:
+            flash("Sign up", 'error')
+
+    return render_template("Login.html", loginform=loginForm)
 
 
 @auth.route("/logout")
+@login_required
 def logout():
-    return render_template("home.html")
+    logout_user()
+    return redirect(url_for('views.home'))
 
 
 @auth.route("/signup", methods=["GET", "POST"])
@@ -37,9 +39,9 @@ def signup():
     if form.validate_on_submit():
 
         Email = form.Email.data
-        users = User.query.filter(User.Email == Email).count()
-        if users >= 1:
-            flash("Email Already in use!!!", 'error')
+        users = User.query.filter(User.Email == Email).first()
+        if users:
+            flash("Email Already exists!!!", 'error')
         else:
             userCount = User.query.count()
             if form.Password.data == form.Password2.data:
@@ -47,16 +49,12 @@ def signup():
                                 FirstName=form.FirstName.data,
                                 LastName=form.LastName.data,
                                 Email=form.Email.data,
-                                PasswordHash=form.Password.data,
+                                PasswordHash=generate_password_hash(form.Password.data),
                                 )
                 db.session.add(new_User)
                 db.session.commit()
                 flash("Account Created!!", "Success")
-                print(f"First Name: {form.FirstName.data}")
-                print(f"Last name: {form.LastName.data}")
-                print(f"E-Mail: {form.Email.data}")
-                print(f"Password: {form.Password.data}")
-                print(f"Confirm Password: {form.Password2.data}")
+                login_user(users)
                 return redirect(url_for('views.home'))
             else:
                 flash("Passwords Do not Match!!!", "error")
